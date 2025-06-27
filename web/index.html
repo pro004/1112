@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Xrotick API - Modern API Documentation Platform" />
+  <meta name="theme-color" content="#09090b" />
+  <title>Xrotick API - Documentation</title>
+  <link rel="icon" href="/icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ripple-styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            },
+            secondary: {
+              400: '#f472b6',
+              500: '#ec4899',
+              600: '#db2777',
+            },
+            dark: {
+              950: '#09090b',
+              900: '#101014',
+              800: '#18181c',
+              700: '#1f1f23',
+              600: '#27272b',
+              500: '#3f3f46',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fadeIn': 'fadeIn 1s ease-out',
+            'slideUp': 'slideUp 0.8s ease-out',
+            'slideDown': 'slideDown 0.8s ease-out',
+            'slideLeft': 'slideLeft 0.8s ease-out',
+            'slideRight': 'slideRight 0.8s ease-out',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+            'bounce-slow': 'bounce 3s infinite',
+            'wiggle': 'wiggle 1s ease-in-out infinite',
+            'sparkle': 'sparkle 2s linear infinite',
+            'gradient-shift': 'gradientShift 4s ease-in-out infinite',
+            'rotate-slow': 'rotateSlow 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            slideDown: {
+              '0%': { transform: 'translateY(-30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            slideLeft: {
+              '0%': { transform: 'translateX(30px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            slideRight: {
+              '0%': { transform: 'translateX(-30px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)', transform: 'scale(1)' },
+              '50%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)', transform: 'scale(1.02)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            sparkle: {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.7', transform: 'scale(1.1)' },
+            },
+            gradientShift: {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+            rotateSlow: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .gradient-bg {
+      background: linear-gradient(135deg, #09090b 0%, #18181c 50%, #27272b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 25%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.1) 75%, rgba(139, 92, 246, 0.1) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+      z-index: -1;
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: 0.1;
+    }
+    
+    .shape-1 {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      top: 10%;
+      left: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(45deg, #ec4899, #8b5cf6);
+      top: 60%;
+      right: 15%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    
+    .shape-3 {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #a78bfa, #f472b6);
+      bottom: 20%;
+      left: 60%;
+      animation: float 6s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+    
+    .glow-effect {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .glow-effect:hover {
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
+      transform: translateY(-2px);
+    }
+    
+    .text-glow {
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .card-hover:hover::before {
+      left: 100%;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+    }
+    
+    .pulse-ring {
+      animation: pulseRing 2s infinite;
+    }
+    
+    @keyframes pulseRing {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+      }
+      100% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+    }
+    
+    .gradient-text {
+      background: linear-gradient(45deg, #8b5cf6, #ec4899, #a78bfa);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientShift 3s ease infinite;
+    }
+    
+    /* Enhanced Ripple Effect System */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.4);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .ripple-purple {
+      background: rgba(139, 92, 246, 0.4);
+    }
+    
+    .ripple-pink {
+      background: rgba(236, 72, 153, 0.4);
+    }
+    
+    .ripple-blue {
+      background: rgba(59, 130, 246, 0.4);
+    }
+    
+    .ripple-green {
+      background: rgba(20, 184, 166, 0.4);
+    }
+    
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    /* Interactive Element Base */
+    .interactive-element {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .interactive-element:hover {
+      transform: translateY(-2px);
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .xrotick-glow {
+      text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+      animation: glowPulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3); }
+      to { text-shadow: 0 0 15px rgba(139, 92, 246, 0.8), 0 0 30px rgba(139, 92, 246, 0.5); }
+    }
+  </style>
+</head>
+<body class="min-h-screen gradient-bg font-sans text-white overflow-x-hidden overflow-y-auto">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
+  <!-- Animated Background Particles -->
+  <div class="fixed inset-0 opacity-20">
+    <div class="absolute top-20 left-20 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-40 right-20 w-72 h-72 bg-secondary-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-8 left-40 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 4s;"></div>
+  </div>
+
+  <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl text-center">
+      <!-- Welcome Section -->
+      <div class="mb-12 animate-fadeIn">
+        <div class="relative inline-block mb-6">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400 animate-pulse-glow"></div>
+          <img src="https://github.com/ajirodesu.png" alt="Profile" 
+               class="relative w-24 h-24 rounded-full mx-auto animate-float border-2 border-primary-500 glow-effect" 
+               onerror="this.src='https://via.placeholder.com/96/8b5cf6/ffffff?text=API'">
+        </div>
+        <h1 class="text-6xl font-heading font-bold gradient-text mb-4 text-glow animate-slideUp">Xrotick API</h1>
+        <p class="text-gray-400 text-xl mb-8 animate-slideUp" style="animation-delay: 0.2s;">Modern API Documentation Platform</p>
+        
+        <!-- Quick Access Buttons -->
+        <div class="space-y-4 animate-slideUp" style="animation-delay: 0.4s;">
+          <a href="/docs" 
+             class="interactive-element inline-block w-full max-w-sm bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-900 text-lg glow-effect hover:animate-pulse-glow">
+            📚 View API Documentation
+          </a>
+          
+          <div class="flex justify-center space-x-4 mt-6">
+            <a href="#" id="githubLink" 
+               class="interactive-element bg-dark-800/70 hover:bg-dark-700 text-gray-300 hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center space-x-2 card-hover backdrop-blur-sm">
+              <svg class="w-5 h-5 animate-sparkle" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center">
+        <p class="text-gray-500 text-sm">
+          Open API Platform for Developers
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load project info from package.json
+    async function loadProjectInfo() {
+      try {
+        const response = await fetch('/package.json');
+        const packageData = await response.json();
+        
+        if (packageData.author && packageData.author.github) {
+          document.getElementById('githubLink').href = packageData.author.github;
+        }
+      } catch (error) {
+        console.log('Could not load project info');
+      }
+    }
+
+    // Add interactive effects
+    function addInteractiveEffects() {
+      // Add parallax effect to floating shapes
+      document.addEventListener('mousemove', (e) => {
+        const shapes = document.querySelectorAll('.floating-shape');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        shapes.forEach((shape, index) => {
+          const speed = (index + 1) * 0.5;
+          const xPos = x * speed * 10;
+          const yPos = y * speed * 10;
+          shape.style.transform = `translate(${xPos}px, ${yPos}px)`;
+        });
+      });
+
+      // Enhanced Universal Ripple Effect System
+      function createRippleEffect(element, event, color = 'purple') {
+        const ripple = document.createElement('span');
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple', `ripple-${color}`);
+        
+        // Ensure element has relative positioning
+        if (getComputedStyle(element).position === 'static') {
+          element.style.position = 'relative';
+        }
+        element.style.overflow = 'hidden';
+        
+        element.appendChild(ripple);
+        
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.remove();
+          }
+        }, 600);
+      }
+
+      // Apply ripple effects to all interactive elements
+      document.querySelectorAll('.interactive-element, .card-hover, button, a, .glow-effect').forEach(element => {
+        element.addEventListener('click', function(e) {
+          // Determine ripple color based on element classes
+          let color = 'purple';
+          if (this.classList.contains('bg-gradient-to-r')) color = 'pink';
+          if (this.classList.contains('bg-dark-800')) color = 'blue';
+          if (this.classList.contains('text-green-400')) color = 'green';
+          
+          createRippleEffect(this, e, color);
+        });
+        
+        // Add hover effect enhancement
+        element.addEventListener('mouseenter', function() {
+          this.style.transform = this.style.transform + ' scale(1.02)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+          this.style.transform = this.style.transform.replace(' scale(1.02)', '');
+        });
+      });
+
+      // Add entrance animations on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.querySelectorAll('.animate-slideUp, .animate-fadeIn').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+      });
+    }
+
+    // Load project info on page load
+    loadProjectInfo();
+    
+    // Initialize interactive effects when DOM is loaded
+    document.addEventListener('DOMContentLoaded', addInteractiveEffects);
+  </script>
+  <script src="/ripple-effects.js"></script>
+</body>
+</html>

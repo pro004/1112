@@ -1,0 +1,163 @@
+/**
+ * Universal Ripple Effect Styles
+ * Provides consistent touch/click ripple effects across the entire platform
+ */
+
+/* Enhanced Ripple Effect System */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.4);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.ripple-purple {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+.ripple-pink {
+  background: rgba(236, 72, 153, 0.4);
+}
+
+.ripple-blue {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+.ripple-green {
+  background: rgba(20, 184, 166, 0.4);
+}
+
+.ripple-teal {
+  background: rgba(20, 184, 166, 0.4);
+}
+
+.ripple-amber {
+  background: rgba(245, 158, 11, 0.4);
+}
+
+.ripple-red {
+  background: rgba(239, 68, 68, 0.4);
+}
+
+.ripple-orange {
+  background: rgba(249, 115, 22, 0.4);
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Interactive Element Base */
+.interactive-element {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced hover effects for ripple elements */
+.ripple-enabled {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.ripple-enabled:hover {
+  transform: translateY(-1px);
+}
+
+/* Disable ripple effect for specific elements */
+.no-ripple {
+  pointer-events: auto;
+}
+
+.no-ripple::after {
+  display: none !important;
+}
+
+/* Enhanced button states with ripple support */
+button.ripple-enabled:active,
+a.ripple-enabled:active,
+.interactive-element:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Special ripple effects for different element types */
+.card-hover.ripple-enabled {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gradient-button.ripple-enabled {
+  transition: all 0.3s ease;
+}
+
+.method-badge.ripple-enabled {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.method-badge.ripple-enabled:hover {
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+}
+
+/* Floating elements with ripple effects */
+.floating-element.ripple-enabled {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-element.ripple-enabled:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive ripple effects */
+@media (max-width: 768px) {
+  .ripple {
+    animation-duration: 0.4s;
+  }
+  
+  .interactive-element:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .ripple {
+    animation: none;
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  
+  .interactive-element {
+    transition: none;
+  }
+  
+  .ripple-enabled:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ripple-purple {
+    background: rgba(255, 255, 255, 0.6);
+  }
+  
+  .ripple-pink {
+    background: rgba(255, 255, 255, 0.6);
+  }
+  
+  .ripple-blue {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
