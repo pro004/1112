@@ -1178,8 +1178,8 @@
         position: absolute;
         border-radius: 50%;
         filter: blur(2px);
-        opacity: 0.1;
-        animation: floatShapes 15s ease-in-out infinite;
+        opacity: 0.05;
+        animation: none; /* Disabled for performance */
       }
       
       .shape-1 {
@@ -1243,45 +1243,18 @@
         75% { transform: translateY(-20px) translateX(25px) rotate(270deg); }
       }
 
-      /* Animated Background Grid */
+      /* Animated Background Grid - DISABLED for performance */
       .animated-grid {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: gridMove 20s linear infinite;
-        z-index: -1;
-        pointer-events: none;
+        display: none; /* Disabled to reduce lag */
       }
 
-      @keyframes gridMove {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(50px, 50px); }
-      }
-
-      /* Floating Particles */
+      /* Floating Particles - DISABLED for performance */
       .particle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
+        display: none; /* Disabled to reduce lag */
       }
 
       .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: rgba(139, 92, 246, 0.6);
-        border-radius: 50%;
-        animation: particleFloat 15s linear infinite;
+        display: none; /* Disabled to reduce lag */
       }
 
       .particle-1 {
@@ -1357,27 +1330,13 @@
         }
       }
 
-      /* Background Waves */
+      /* Background Waves - DISABLED for performance */
       .background-waves {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -2;
-        overflow: hidden;
+        display: none; /* Disabled to reduce lag */
       }
 
       .wave {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 200%;
-        height: 200px;
-        background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
-        border-radius: 50%;
-        animation: waveAnimation 10s ease-in-out infinite;
+        display: none; /* Disabled to reduce lag */
       }
 
       .wave-1 {
@@ -2905,17 +2864,27 @@
 
       // Enhanced Interactive Effects
       function addEnhancedEffects() {
-        // Parallax effect for floating shapes
+        // Optimized parallax effect with throttling
+        let isParallaxActive = false;
         document.addEventListener('mousemove', (e) => {
-          const shapes = document.querySelectorAll('.floating-shape');
-          const x = e.clientX / window.innerWidth;
-          const y = e.clientY / window.innerHeight;
+          if (isParallaxActive) return;
+          isParallaxActive = true;
           
-          shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.3;
-            const xPos = x * speed * 15;
-            const yPos = y * speed * 15;
-            shape.style.transform = `translate(${xPos}px, ${yPos}px)`;
+          requestAnimationFrame(() => {
+            const shapes = document.querySelectorAll('.floating-shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Limit to first 3 shapes only for performance
+            shapes.forEach((shape, index) => {
+              if (index < 3) {
+                const speed = (index + 1) * 0.1; // Reduced from 0.3
+                const xPos = x * speed * 8; // Reduced from 15
+                const yPos = y * speed * 8;
+                shape.style.transform = `translate(${xPos}px, ${yPos}px)`;
+              }
+            });
+            isParallaxActive = false;
           });
         });
 
@@ -3136,13 +3105,17 @@
       async function fetchLiveApiStats() {
         try {
           const response = await fetch('/api/stats');
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
           const data = await response.json();
           if (data.status && data.data) {
             apiStats = data.data;
             updateTopApisList();
           }
         } catch (error) {
-          console.error('Failed to fetch API stats:', error);
+          console.log('API stats temporarily unavailable');
+          // Gracefully handle errors without spamming console
         }
       }
 
@@ -3290,7 +3263,7 @@
               }
             });
           }
-        }, 5000);
+        }, 15000); // Reduced from 5s to 15s for better performance
       }
 
       // Add page ripple CSS
@@ -3338,44 +3311,17 @@
           }
 
           .rank-badge {
-            animation: rankPulse 3s ease-in-out infinite;
-          }
-
-          @keyframes rankPulse {
-            0%, 100% {
-              transform: scale(1);
-              box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-            }
-            50% {
-              transform: scale(1.1);
-              box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
-            }
+            animation: none; /* Disabled for performance */
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
           }
 
           .api-name-glow {
-            animation: textGlow 4s ease-in-out infinite alternate;
-          }
-
-          @keyframes textGlow {
-            0% {
-              text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-            }
-            100% {
-              text-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(139, 92, 246, 0.4);
-            }
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+            animation: none; /* Disabled for performance */
           }
 
           .count-animation {
-            animation: countBounce 2s ease-in-out infinite;
-          }
-
-          @keyframes countBounce {
-            0%, 100% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-5px);
-            }
+            animation: none; /* Disabled for performance */
           }
 
           .frosted-api-card {
