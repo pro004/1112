@@ -1,0 +1,27 @@
+Loaded Route: ai21-jamba-large (GET)
+Loaded Route: ai-yi-large (GET)
+Loaded Route: Blue Archive (GET)
+Loaded Route: example (GET)
+Loaded Route: sample (POST)
+Loaded Route: login (POST)
+Loaded Route: Anime Info (GET)
+Loaded Route: Anime Search (GET)
+Loaded Route: Chara Info (GET)
+Loaded Route: Chara Search (GET)
+Loaded Route: Manga Info (GET)
+Loaded Route: mangaSearch (GET)
+Loaded Route: Seasonal Anime (GET)
+Loaded Route: Top Anime (GET)
+Loaded Route: Spotify Downloader Link (GET)
+Loaded Route: Spotify Downloader Search (GET)
+Loaded Route: starcannon (GET)
+Loaded Route: ai21-jamba-forward (GET)
+Loaded Route: TikTok Downloader (GET)
+Loaded Route: Universal Downloader (GET)
+Loaded Route: YouTube Mp3 Downloader (GET)
+Loaded Route: YouTube Search (GET)
+Load Complete! ✓
+Total Routes Loaded: 22
+Server is running on http://0.0.0.0:4000
+API Documentation: http://0.0.0.0:4000/
+API Info Endpoint: http://0.0.0.0:4000/api/info

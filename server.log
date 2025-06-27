@@ -1,0 +1,56 @@
+🔄 Loading API modules...
+📁 Found 20 API files in main directory
+📝 Processing: Ai21-jamba-1.6-large.js
+✅ ai21-jamba-large (GET) -> /api/ai21-jamba-large
+📝 Processing: ai-yi-large.js
+✅ ai-yi-large (GET) -> /api/aiyi
+📝 Processing: bluearchive.js
+✅ Blue Archive (GET) -> /api/ba
+📝 Processing: mal-animeinfo.js
+✅ Anime Info (GET) -> /api/animeinfo
+📝 Processing: mal-animesearch.js
+✅ Anime Search (GET) -> /api/animesearch
+📝 Processing: mal-charainfo.js
+✅ Chara Info (GET) -> /api/charaInfo
+📝 Processing: mal-charasearch.js
+✅ Chara Search (GET) -> /api/charasearch
+📝 Processing: mal-mangainfo.js
+✅ Manga Info (GET) -> /api/mangainfo
+📝 Processing: mal-mangasearch.js
+✅ mangaSearch (GET) -> /api/mangasearch
+📝 Processing: mal-seasonalanime.js
+✅ Seasonal Anime (GET) -> /api/seasonalanime
+📝 Processing: mal-topanime.js
+✅ Top Anime (GET) -> /api/topanime
+📝 Processing: spotifydl.js
+✅ Spotify Downloader Link (GET) -> /api/spotifydl
+📝 Processing: spotifydl2.js
+✅ Spotify Downloader Search (GET) -> /api/spotifysearch
+📝 Processing: starcannon.js
+✅ starcannon (GET) -> /api/starcannon
+📝 Processing: teraboxdl.js
+✅ Terabox Video Player (GET) -> /api/teraboxdl
+📝 Processing: text.js
+✅ ai21-jamba-forward (GET) -> /api/ai21-jamba-forward
+📝 Processing: tikdl.js
+✅ TikTok Downloader (GET) -> /api/tikdl
+📝 Processing: unidl.js
+✅ Universal Downloader (GET) -> /api/unidl
+📝 Processing: ytmp3dl.js
+✅ YouTube Mp3 Downloader (GET) -> /api/ytmp3dl
+📝 Processing: ytsearch.js
+✅ YouTube Search (GET) -> /api/ytsearch
+📁 Loading example APIs...
+📝 Processing: example/get/example.js
+✅ example (GET) -> /api/example
+📝 Processing: example/post/sample.js
+✅ sample (POST) -> /api/sampleapi
+📝 Processing: example/post/test.js
+✅ Example POST Test (POST) -> /api/test
+
+🎉 API Loading Complete! Total Routes: 23
+
+
+🚀 Xrotick API Server running on http://0.0.0.0:4000
+📚 API Documentation: http://0.0.0.0:4000/docs
+📊 Total APIs loaded: 23
